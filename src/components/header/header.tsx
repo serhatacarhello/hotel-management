@@ -1,8 +1,7 @@
-"use client";
 
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
-import { MdDarkMode } from "react-icons/md";
+import DarkMode from "../dark-mode/dark-mode";
 
 const Header = () => {
   return (
@@ -18,7 +17,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="ml-2">
-            <MdDarkMode className="cursor-pointer" />
+           <DarkMode/>
           </li>
         </ul>
       </div>
