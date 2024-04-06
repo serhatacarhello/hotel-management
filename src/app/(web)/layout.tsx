@@ -5,6 +5,7 @@ import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import ThemeProvider from "@/components/theme-provider/theme-provider";
 import AuthProvider from "@/components/auth-provider/auth-provider";
+import Toast from "@/components/toast/toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
               {children}
               <Footer />
             </main>
+            <Toast/> // for toast notifications
           </ThemeProvider>
         </AuthProvider>
       </body>
