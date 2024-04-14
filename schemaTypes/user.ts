@@ -35,7 +35,7 @@ const user = {
     }),
     defineField({
       name: "email",
-      type: "string",
+      type: "email",
       title: "Email",
     }),
     defineField({

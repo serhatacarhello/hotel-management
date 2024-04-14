@@ -1,8 +1,12 @@
 "use client";
 
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import { signUp } from "next-auth-sanity/client";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const defaultFormData = {
   email: "",
@@ -10,22 +14,30 @@ const defaultFormData = {
   password: "",
 };
 
-const Auth = () => {
+const inputStyles =
+  "border border-gray-300 sm:text-sm text-black rounded-lg block w-full p-2.5 focus:outline-none";
+
+const AuthPage = () => {
   const [formData, setFormData] = useState(defaultFormData);
 
-  const inputStyles =
-    "border border-gray-300 sm:text-sm text-black rounded-lg block w-full p-2.5 focus:outline-none";
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  useEffect(() => {
+    if (session) router.push("/");
+  }, [router, session]);
+
   const loginHandler = async () => {
     try {
-      console.log(formData);
+      await signIn();
+      router.push("/");
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong.");
     }
   };
 
@@ -33,9 +45,12 @@ const Auth = () => {
     event.preventDefault();
 
     try {
-      console.log(formData);
+      const user = await signUp(formData);
+      if (user) {
+        toast.success(`Successfully singed up.\n Please sign in.`);
+      }
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong.");
     } finally {
       setFormData(defaultFormData);
     }
@@ -108,4 +123,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default AuthPage;

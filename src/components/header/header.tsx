@@ -1,9 +1,12 @@
-
+"use client";
 import Link from "next/link";
 import { FaUserCircle } from "react-icons/fa";
 import DarkMode from "../dark-mode/dark-mode";
+import { useSession } from "next-auth/react";
 
 const Header = () => {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <header className="py-10 px-4 container mx-auto text-xl flex flex-wrap md:flex-nowrap items-center justify-between">
       <div className="flex items-center w-full md:2/3">
@@ -17,7 +20,7 @@ const Header = () => {
             </Link>
           </li>
           <li className="ml-2">
-           <DarkMode/>
+            <DarkMode />
           </li>
         </ul>
       </div>
