@@ -69,7 +69,7 @@ const Search: FC<Props> = ({
           />
         </div>
         <button
-          className="btn-primary"
+          className="btn-primary w-full lg:w-auto md:hover:scale-110"
           type="button"
           onClick={handleFilterClick}
         >

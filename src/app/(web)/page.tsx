@@ -1,3 +1,4 @@
+import Gallery from "@/components/gallery/gallery";
 import HeroSection from "@/components/hero-section/hero-section";
 import PageSearch from "@/components/page-search/page-search";
 
@@ -9,6 +10,7 @@ export default function Home() {
 
       {/* featured room */}
       {/* gallery */}
+      <Gallery />
       {/* news letter */}
     </main>
   );
