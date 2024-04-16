@@ -34,7 +34,7 @@ export default function RootLayout({
               {children}
               <Footer />
             </main>
-            <Toast/> // for toast notifications
+            <Toast />
           </ThemeProvider>
         </AuthProvider>
       </body>
